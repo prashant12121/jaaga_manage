@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "702119192563",
+    "project_id": "firebase-jaaga"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702119192563:android:7b60861e9bcd43e4",
+        "android_client_info": {
+          "package_name": "com.freeman.jaaga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702119192563-om26rehvdbj6p3sqvbdvjhfui08n63ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_iFxX6vLUaHyjU_U8eUp4Ss29wteDUn8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

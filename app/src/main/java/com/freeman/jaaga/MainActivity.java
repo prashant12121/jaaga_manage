@@ -22,6 +22,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
@@ -31,12 +33,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     SharedPreferences sp;
-
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         SharedPreferences prefs = getSharedPreferences("myprefs",MODE_PRIVATE);
         int IsLogin = prefs.getInt("Islogin",MODE_PRIVATE);
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String personEmail = prefs.getString("personEmail",null);
         String personPhoto = prefs.getString("image",null);
         if(IsLogin==1){
-            Intent j = new Intent(this , NaviDaw.class);
+            Intent j = new Intent(this , databaseuserlist.class);
             j.putExtra("personPhoto",personPhoto);
             j.putExtra("personEmail",personEmail);
             j.putExtra("personGivenName",personName);
@@ -80,7 +85,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(signInIntent, RC_SIGN_IN);     // no such fnc
     }
 
-
+    public void writeNewUser( String PersonPhotoUri,String EmailId,String PersonName,String PersonUserName,String PersonId){
+    User user = new User(PersonPhotoUri,EmailId,PersonName,PersonUserName,PersonId);
+        String key = mDatabase.child("user").push().getKey();
+        mDatabase.child("user").child(key).setValue(user);
+    }
 
 
     private void handleSignInResult(GoogleSignInResult result) {
@@ -94,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String personEmail = acct.getEmail();
             String personId = acct.getId();
             String personPhoto = acct.getPhotoUrl().toString();
+            writeNewUser( personPhoto, personEmail, personName, personGivenName,personId);
+
             int Islogin = 1;
             sp = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = sp.edit();
@@ -106,11 +117,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             edit.putString("image", String.valueOf(personPhoto));
             edit.apply();
 
-            Intent j = new Intent(this , NaviDaw.class);
+
+            Intent j = new Intent(this , databaseuserlist.class);
             j.putExtra("personPhoto",personPhoto);
             j.putExtra("personEmail",personEmail);
             j.putExtra("personGivenName",personGivenName);
             startActivity(j);
+
 
 
             /*

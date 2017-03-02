@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "702119192563",
-    "project_id": "firebase-jaaga"
+    "firebase_url": "https://fir-jaaga.firebaseio.com",
+    "project_id": "firebase-jaaga",
+    "storage_bucket": "firebase-jaaga.appspot.com"
   },
   "client": [
     {
@@ -13,8 +15,20 @@
       },
       "oauth_client": [
         {
+          "client_id": "702119192563-6g7hqff3pgoldd6cpco3eq910j6e9aie.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "702119192563-om26rehvdbj6p3sqvbdvjhfui08n63ua.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "702119192563-49bu2p1rc2f4rab47f6ipcf76cs39ikv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freeman.jaaga",
+            "certificate_hash": "da5ef9dd83d2b3e7d71d28e66da2c6046898a97c"
+          }
         }
       ],
       "api_key": [
@@ -27,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702119192563-6g7hqff3pgoldd6cpco3eq910j6e9aie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

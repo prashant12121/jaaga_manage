@@ -75,7 +75,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.datah
 
         @Override
         public void onClick(View v) {
-            Intent myintent = new Intent(this,chatclass);
+            //Intent myintent = new Intent(this,chatclass);
         }
     }
 
